@@ -14,7 +14,7 @@ conn = psycopg2.connect(**db_config)
 cursor = conn.cursor()
 
 # ruta del documento
-socios = 'C:\\migrar\\credito_tabla2.xlsx'
+socios = 'C:\\migrar\\credito_tabla.xlsx'
 sheet_name = 'Hoja1'  # Cambia esto al nombre de la hoja que deseas importar
 
 df = pd.read_excel(socios, sheet_name=sheet_name)
