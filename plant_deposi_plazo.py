@@ -15,7 +15,7 @@ cursor = conn.cursor()
 
 
 # ruta del documento
-dep_plazo_tabla = 'C:\\migrar\\plant deposi plazo.xlsx'
+dep_plazo_tabla = 'C:\\migrar\\plant_deposi_plazo.xlsx'
 sheet_name = 'Hoja1'  # Cambia esto al nombre de la hoja que deseas importar
 
 df = pd.read_excel(dep_plazo_tabla, sheet_name=sheet_name)
