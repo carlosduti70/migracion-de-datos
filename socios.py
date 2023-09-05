@@ -36,7 +36,30 @@ for index, row in df.iterrows():
 
     image= row['img_foto'] if not pd.isnull(row['img_foto']) else None
 
-    data = (row['codigo del socio'], row['tipo de socio S Socio C Cliente'], fec_ingreso, row['Tipo de persona N Natural J Juridica'], row['Tipo de identificacion C Cedula R RUC'], row['Numero de identificacion o cedula'], row['cod_parroquia'], row['cod_canton'], row['cod_provincia'], row['cod_pais'], row['nombre del socio'], row['apellidos del socio'], row['cod_act_economica'], row['cod_instruccion'], row['nom_juridico'], row['Genero M Masculino, F Femenino'], fec_nacimiento, row['Estado Civil C Casado S Solvero D Divorciado U Union Libre V Viudo'], row['sts_socio'], row['nom_representante_legal'], row['ape_representante_legal'], row['cod_tipo_id_rep_legal'], row['num_id_rel_legal'], row['nombre_conyuge'], row['ape_conyuge'], fec_nac_con, row['cod_tipo_id_con'], row['num_id_con'], row['direccion'], row['dir2_dom'], row['Telefono'], row['TelefonoTrab'], row['Celular'], row['sts_operador_cel'], row['dir_correo'], image, row['txt_link'], fec_usrmod, row['cod_usrmod'], row['nom_beneficiario'], row['ape_beneficiario'], row['cod_tipo_id_ben'], row['num_id_ben'], row['dir_trabajo'], row['dir2_trabajo'], row['cod_tipo_sangre'], row['val_ingreso_mensual'], fec_solicitud, row['cod_origen_ingresos'], row['val_activo'], row['val_pasivo'], row['val_patrimonio'], row['val_gastos_mensuales'], row['cod_causal_vinculacion'], fec_causal, row['cod_tipo_vivienda'], row['val_vivienda'], row['num_tiempo_trabajo'], row['num_cargas_familiares'], row['cod_socio_conyuge'], row['cod_socio_vinculado'], row['cod_relacion'], row['txt_observacion_relacion'], row['cod_oficina'], row['txt_lugar_trabajo'], row['cod_nivel_estudios'], row['sts_rep_asamblea'], row['cod_parroquia_nac'], row['cod_canton_nac'], row['cod_provincia_nac'], row['cod_pais_nac'], row['cod_pais_dom'], row['cod_barrio'], row['sts_pep'], row['sts_fuente_ingresos'], row['sts_actualiza_web'], fec_reingreso, row['sts_consejo_administracion'], row['sts_consejo_vigilancia'], row['sts_asamblea_gen_repres'], row['sts_edu_financiera'], row['cod_etnia'], row['sts_representante_legal'])
+    tipo_socio = str(row['tipo de socio S Socio C Cliente'])
+    tipo_persona = str(row['Tipo de persona N Natural J Juridica'])
+    tipo_identificacion = str(row['Tipo de identificacion C Cedula R RUC'])
+    sexo = str(row['Genero M Masculino, F Femenino'])
+    estado_civil = str(row['Estado Civil C Casado S Solvero D Divorciado U Union Libre V Viudo'])
+    sts_socio = str(row['sts_socio'])
+    id_rep_legal = str(row['cod_tipo_id_rep_legal'])
+    cod_tipo_id = str(row['cod_tipo_id_con'])
+    sts_operador_cell = str(row['sts_operador_cel'])
+    cod_tipo_id_ben = str(row['cod_tipo_id_ben'])
+    cod_origen_ingresos = str(row['cod_origen_ingresos'])
+    cod_tipo_vivienda = str(row['cod_tipo_vivienda'])
+    cod_nivel_estudios = str(row['cod_nivel_estudios'])
+    sts_rep_asamblea = str(row['sts_rep_asamblea'])
+    sts_pep = str(row['sts_pep'])
+    sts_fuente_ingresos = str(row['sts_fuente_ingresos'])
+    sts_actualiza_web = str(row['sts_actualiza_web'])
+    sts_consejo_administracion = str(row['sts_consejo_administracion'])
+    sts_consejo_vigilancia = str(row['sts_consejo_vigilancia'])
+    sts_asamblea_gen_repres = str(row['sts_asamblea_gen_repres'])
+    sts_edu_financiera = str(row['sts_edu_financiera'])
+    sts_representante_legal = str(row['sts_representante_legal'])
+
+    data = (row['codigo del socio'], tipo_socio[0], fec_ingreso, tipo_persona[0], tipo_identificacion[0], row['Numero de identificacion o cedula'], row['cod_parroquia'], row['cod_canton'], row['cod_provincia'], row['cod_pais'], row['nombre del socio'], row['apellidos del socio'], row['cod_act_economica'], row['cod_instruccion'], row['nom_juridico'], sexo[0], fec_nacimiento, estado_civil[0], sts_socio[0], row['nom_representante_legal'], row['ape_representante_legal'], id_rep_legal[0], row['num_id_rel_legal'], row['nombre_conyuge'], row['ape_conyuge'], fec_nac_con, cod_tipo_id[0], row['num_id_con'], row['direccion'], row['dir2_dom'], row['Telefono'], row['TelefonoTrab'], row['Celular'], sts_operador_cell[0], row['dir_correo'], image, row['txt_link'], fec_usrmod, row['cod_usrmod'], row['nom_beneficiario'], row['ape_beneficiario'], cod_tipo_id_ben[0], row['num_id_ben'], row['dir_trabajo'], row['dir2_trabajo'], row['cod_tipo_sangre'], row['val_ingreso_mensual'], fec_solicitud, cod_origen_ingresos[0], row['val_activo'], row['val_pasivo'], row['val_patrimonio'], row['val_gastos_mensuales'], row['cod_causal_vinculacion'], fec_causal, cod_tipo_vivienda[0], row['val_vivienda'], row['num_tiempo_trabajo'], row['num_cargas_familiares'], row['cod_socio_conyuge'], row['cod_socio_vinculado'], row['cod_relacion'], row['txt_observacion_relacion'], row['cod_oficina'], row['txt_lugar_trabajo'], cod_nivel_estudios[0], sts_rep_asamblea[0], row['cod_parroquia_nac'], row['cod_canton_nac'], row['cod_provincia_nac'], row['cod_pais_nac'], row['cod_pais_dom'], row['cod_barrio'], sts_pep[0], sts_fuente_ingresos[0], sts_actualiza_web[0], fec_reingreso, sts_consejo_administracion[0], sts_consejo_vigilancia[0], sts_asamblea_gen_repres[0], sts_edu_financiera[0], row['cod_etnia'], sts_representante_legal[0])
 
     cursor.execute(insert_query, data)
     conn.commit()
