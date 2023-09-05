@@ -4,10 +4,10 @@ import os
 
 # Configuración de la conexión a PostgreSQL
 db_config = {
-    'host': '192.168.1.71',
+    'host': '192.168.1.18',
     'user': 'postgres',
     'password': 'dba',
-    'dbname': 'postgres'
+    'dbname': 'migracion'
 }
 
 conn = psycopg2.connect(**db_config)

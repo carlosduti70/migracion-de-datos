@@ -4,10 +4,10 @@ import os
 
 # Configuración de la conexión a PostgreSQL
 db_config = {
-    'host': '192.168.1.71',
+    'host': '192.168.1.18',
     'user': 'postgres',
     'password': 'dba',
-    'dbname': 'postgres'
+    'dbname': 'migracion'
 }
 
 conn = psycopg2.connect(**db_config)
@@ -34,7 +34,9 @@ for index, row in df.iterrows():
     fec_causal = row['fec_causal'].strftime('%Y-%m-%d') if not pd.isnull(row['fec_causal']) else None
     fec_reingreso = row['fec_reingreso'].strftime('%Y-%m-%d') if not pd.isnull(row['fec_reingreso']) else None
 
-    data = (row['codigo del socio'], row['tipo de socio S Socio C Cliente'], fec_ingreso, row['Tipo de persona N Natural J Juridica'], row['Tipo de identificacion C Cedula R RUC'], row['Numero de identificacion o cedula'], row['cod_parroquia'], row['cod_canton'], row['cod_provincia'], row['cod_pais'], row['nombre del socio'], row['apellidos del socio'], row['cod_act_economica'], row['cod_instruccion'], row['nom_juridico'], row['Genero M Masculino, F Femenino'], fec_nacimiento, row['Estado Civil C Casado S Solvero D Divorciado U Union Libre V Viudo'], row['sts_socio'], row['nom_representante_legal'], row['ape_representante_legal'], row['cod_tipo_id_rep_legal'], row['num_id_rel_legal'], row['nombre_conyuge'], row['ape_conyuge'], fec_nac_con, row['cod_tipo_id_con'], row['num_id_con'], row['direccion'], row['dir2_dom'], row['Telefono'], row['TelefonoTrab'], row['Celular'], row['sts_operador_cel'], row['dir_correo'], row['img_foto'], row['txt_link'], fec_usrmod, row['cod_usrmod'], row['nom_beneficiario'], row['ape_beneficiario'], row['cod_tipo_id_ben'], row['num_id_ben'], row['dir_trabajo'], row['dir2_trabajo'], row['cod_tipo_sangre'], row['val_ingreso_mensual'], fec_solicitud, row['cod_origen_ingresos'], row['val_activo'], row['val_pasivo'], row['val_patrimonio'], row['val_gastos_mensuales'], row['cod_casual_vinculacion'], fec_causal, row['cod_tipo_vivienda'], row['val_vivienda'], row['num_tiempo_trabajo'], row['num_cargas_familiares'], row['cod_socio_conyuge'], row['cod_socio_vinculado'], row['cod_relacion'], row['txt_observacion_relacion'], row['cod_oficina'], row['txt_lugar_trabajo'], row['cod_nivel_estudios'], row['sts_rep_asamblea'], row['cod_parroquia_nac'], row['cod_canton_nac'], row['cod_provincia_nac'], row['cod_pais_nac'], row['cod_pais_dom'], row['cod_barrio'], row['sts_pep'], row['sts_fuente_ingresos'], row['sts_actualiza_web'], fec_reingreso, row['sts_consejo_administracion'], row['sts_consejo_vigilancia'], row['sts_asamblea_gen_repres'], row['sts_edu_financiera'], row['cod_etnia'], row['sts_representante_legal'])
+    image= row['img_foto'] if not pd.isnull(row['img_foto']) else None
+
+    data = (row['codigo del socio'], row['tipo de socio S Socio C Cliente'], fec_ingreso, row['Tipo de persona N Natural J Juridica'], row['Tipo de identificacion C Cedula R RUC'], row['Numero de identificacion o cedula'], row['cod_parroquia'], row['cod_canton'], row['cod_provincia'], row['cod_pais'], row['nombre del socio'], row['apellidos del socio'], row['cod_act_economica'], row['cod_instruccion'], row['nom_juridico'], row['Genero M Masculino, F Femenino'], fec_nacimiento, row['Estado Civil C Casado S Solvero D Divorciado U Union Libre V Viudo'], row['sts_socio'], row['nom_representante_legal'], row['ape_representante_legal'], row['cod_tipo_id_rep_legal'], row['num_id_rel_legal'], row['nombre_conyuge'], row['ape_conyuge'], fec_nac_con, row['cod_tipo_id_con'], row['num_id_con'], row['direccion'], row['dir2_dom'], row['Telefono'], row['TelefonoTrab'], row['Celular'], row['sts_operador_cel'], row['dir_correo'], image, row['txt_link'], fec_usrmod, row['cod_usrmod'], row['nom_beneficiario'], row['ape_beneficiario'], row['cod_tipo_id_ben'], row['num_id_ben'], row['dir_trabajo'], row['dir2_trabajo'], row['cod_tipo_sangre'], row['val_ingreso_mensual'], fec_solicitud, row['cod_origen_ingresos'], row['val_activo'], row['val_pasivo'], row['val_patrimonio'], row['val_gastos_mensuales'], row['cod_causal_vinculacion'], fec_causal, row['cod_tipo_vivienda'], row['val_vivienda'], row['num_tiempo_trabajo'], row['num_cargas_familiares'], row['cod_socio_conyuge'], row['cod_socio_vinculado'], row['cod_relacion'], row['txt_observacion_relacion'], row['cod_oficina'], row['txt_lugar_trabajo'], row['cod_nivel_estudios'], row['sts_rep_asamblea'], row['cod_parroquia_nac'], row['cod_canton_nac'], row['cod_provincia_nac'], row['cod_pais_nac'], row['cod_pais_dom'], row['cod_barrio'], row['sts_pep'], row['sts_fuente_ingresos'], row['sts_actualiza_web'], fec_reingreso, row['sts_consejo_administracion'], row['sts_consejo_vigilancia'], row['sts_asamblea_gen_repres'], row['sts_edu_financiera'], row['cod_etnia'], row['sts_representante_legal'])
 
     cursor.execute(insert_query, data)
     conn.commit()
@@ -44,4 +46,4 @@ for index, row in df.iterrows():
 cursor.close()
 conn.close()
 
-print("Datos insertados correctamente en la base de datos.")
+print("Datos insertados correctamente en la base de datos.")    
