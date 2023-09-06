@@ -4,10 +4,10 @@ import os
 
 # Configuración de la conexión a PostgreSQL
 db_config = {
-    'host': '192.168.1.18',
+    'host': '192.168.1.71',
     'user': 'postgres',
     'password': 'dba',
-    'dbname': 'migracion'
+    'dbname': 'postgres'
 }
 
 conn = psycopg2.connect(**db_config)
@@ -28,8 +28,12 @@ for index, row in df.iterrows():
     fec_usrmod = row['fec_usrmod'].strftime('%Y-%m-%d') if not pd.isnull(row['fec_usrmod']) else None
     fec_ult_pago = row['fec_ult_pago'].strftime('%Y-%m-%d') if not pd.isnull(row['fec_ult_pago']) else None
 
+    sts_credito_tabla = str(row['sts_credito_tabla'])
 
-    data = (row['cod_producto'], row['cod_cuenta'], row['num_cuota'], row['val_capital'], row['val_interes'], row['val_tasa_interes'], row['val_gastos'], row['val_gestion_cobro'], row['val_ahorro'], row['val_certificado'], row['val_otros'], row['val_impuesto'], row['sts_credito_tabla'], fec_inicio, fec_vencimiento, row['txt_referencia'], fec_usrmod, row['val_seguro'], row['val_notificacion'], row['val_multa'], row['val_saldo_capital'], row['val_interes'], row['val_saldo_gestion_cobro'], row['val_saldo_ahorro'], row['val_saldo_certificado'], row['val_saldo_gastos'], row['val_saldo_otros'], row['val_saldo_impuesto'], row['val_saldo_seguro'], row['val_saldo_notificacion'], fec_ult_pago, row['val_saldo_multa'], row['val_capital_mora'], row['num_dias_mora'], row['val_saldo_mora'], row['val_edificio'], row['val_saldo_edificio'], row['val_fondo'], row['val_saldo_fondo'], row['cod_usrmod'], row['val_capital_vencido'], row['cod_cuenta_contable'])
+
+    data = (row['cod_producto'], row['cod_cuenta'], row['num_cuota'], row['val_capital'], row['val_interes'], row['val_tasa_interes'], row['val_gastos'], row['val_gestion_cobro'], row['val_ahorro'], row['val_certificado'], row['val_otros'], row['val_impuesto'], sts_credito_tabla[0], fec_inicio, fec_vencimiento, row['txt_referencia'], fec_usrmod, row['val_seguro'], row['val_notificacion'], row['val_multa'], row['val_saldo_capital'], row['val_interes'], row['val_saldo_gestion_cobro'], row['val_saldo_ahorro'], row['val_saldo_certificado'], row['val_saldo_gastos'], row['val_saldo_otros'], row['val_saldo_impuesto'], row['val_saldo_seguro'], row['val_saldo_notificacion'], fec_ult_pago, row['val_saldo_multa'], row['val_capital_mora'], row['num_dias_mora'], row['val_saldo_mora'], row['val_edificio'], row['val_saldo_edificio'], row['val_fondo'], row['val_saldo_fondo'], row['cod_usrmod'], row['val_capital_vencido'], row['cod_cuenta_contable'])
     
     cursor.execute(insert_query, data)
     conn.commit()
+
+print("Datos insertados correctamente :)...")

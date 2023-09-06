@@ -4,10 +4,10 @@ import os
 
 # Configuración de la conexión a PostgreSQL
 db_config = {
-    'host': '192.168.1.18',
+    'host': '192.168.1.71',
     'user': 'postgres',
     'password': 'dba',
-    'dbname': 'migracion'
+    'dbname': 'postgres'
 }
 
 conn = psycopg2.connect(**db_config)
@@ -69,4 +69,4 @@ for index, row in df.iterrows():
 cursor.close()
 conn.close()
 
-print("Datos insertados correctamente en la base de datos.")    
+print("Datos insertados correctamente :)...")    

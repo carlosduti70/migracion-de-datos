@@ -4,10 +4,10 @@ import os
 
 # Configuración de la conexión a PostgreSQL
 db_config = {
-    'host': '192.168.1.18',
+    'host': '192.168.1.71',
     'user': 'postgres',
     'password': 'dba',
-    'dbname': 'migracion'
+    'dbname': 'postgres'
 }
 
 conn = psycopg2.connect(**db_config)
@@ -38,8 +38,25 @@ for index, row in df.iterrows():
     fec_novacion = row['fec_novacion'].strftime('%Y-%m-%d') if not pd.isnull(row['fec_novacion']) else None
     fec_cancelacion = row['fec_cancelacion'].strftime('%Y-%m-%d') if not pd.isnull(row['fec_cancelacion']) else None
 
+    sts_prestamo = str(row['sts_prestamo'])
+    sts_tipo_cuota = str(row['sts_tipo_cuota'])
+    sts_tipo_tasa = str(row['sts_tipo_tasa'])
+    sts_forma_pago = str(row['sts_forma_pago'])
+    sts_encaje = str(row['sts_encaje'])
+    sts_certificado = str(row['sts_certificado'])
+    sts_ahorro = str(row['sts_ahorro'])
+    sts_seguro = str(row['sts_seguro'])
+    sts_tipo_credito = str(row['sts_tipo_credito'])
+    cod_obj_fideicomiso = str(row['cod_obj_fideicomiso'])
+    cod_linea_credito = str(row['cod_linea_credito'])
+    cod_clase_credito = str(row['cod_clase_credito'])
+    sts_operacion = str(row['sts_operacion'])
+    cod_situacion_operacion = str(row['cod_situacion_operacion'])
+    cod_destino_financiero = str(row['cod_destino_financiero'])
+    cod_forma_cancelacion = str(row['cod_forma_cancelacion'])
 
-    data = (row['cod_producto'], row['cod_cuenta'], row['cod_producto_socio'], row['cod_cuenta_socio'], row['cod_socio'], row['num_credito'], row['num_solicitud'], row['val_capital'], row['val_desembolso'], row['val_saldo'], row['val_tasa_interes'], row['val_interes'], row['val_gastos'], row['val_gestion_cobro'], row['val_ahorro'], row['val_certificado'], row['val_otros'], row['val_impuesto'], row['num_plazo'], row['num_dias_amortizacion'], row['num_cuotas'], row['cod_destino'], fec_prestamo, fec_vencimiento, fec_ult_pago, row['sts_prestamo'], row['sts_tipo_cuota'], row['sts_tipo_tasa'], row['sts_forma_pago'], row['cod_oficial_credito'], row['cod_oficina'], row['txt_referencia'], row['cod_usrmod'], fec_usrmod, row['cod_producto_encaje'], row['cod_cuenta_encaje'], row['val_cupo'], row['sts_encaje'], row['val_encaje'], row['cod_producto_certificado'], row['cod_cuenta_certificado'], fec_primer_pago, row['sts_certificado'], row['sts_ahorro'], row['num_cuotas_pagadas'], row['val_mora'], row['num_notificacion'], fec_ult_notificacion, row['val_notificacion'], row['val_seguro'], row['num_dia_pago'], row['sts_seguro'], row['val_capital_mora'], row['num_dias_mora'], row['val_capital_vencido'], row['val_multa'], row['val_edificio'], row['val_fondo'], row['cod_notificacion'], row['sts_tipo_credito'], row['val_demanda'], row['val_castigo'], row['cod_tipo_credito'], row['cod_cuenta_contable'], row['cod_clasif_credito'], row['val_tir'], row['val_tea'], row['val_prima_descuento'], row['val_provision_inc_constituida'], row['val_provision_inc_reducida'], row['val_provision_int'], fec_provision_int, fec_demanda, fec_castigo, row['cod_tipo_operacion'], row['cod_obj_fideicomiso'], fec_provision_inc, row['cod_cuenta_anterior'], fec_novacion, row['cod_linea_credito'], row['num_frecuencia_revision'], row['cod_clase_credito'], row['sts_operacion'], row['cod_situacion_operacion'], row['cod_destino_financiero'], row['cod_act_eco_receptora'], row['cod_provincia_destino'], row['cod_canton_destino'], row['cod_instruccion_esperada'], row['num_participantes_solidario'], row['cod_forma_cancelacion'], fec_cancelacion, row['cod_parroquia_destino'])
+
+    data = (row['cod_producto'], row['cod_cuenta'], row['cod_producto_socio'], row['cod_cuenta_socio'], row['cod_socio'], row['num_credito'], row['num_solicitud'], row['val_capital'], row['val_desembolso'], row['val_saldo'], row['val_tasa_interes'], row['val_interes'], row['val_gastos'], row['val_gestion_cobro'], row['val_ahorro'], row['val_certificado'], row['val_otros'], row['val_impuesto'], row['num_plazo'], row['num_dias_amortizacion'], row['num_cuotas'], row['cod_destino'], fec_prestamo, fec_vencimiento, fec_ult_pago, sts_prestamo[0], sts_tipo_cuota[0], sts_tipo_tasa[0], sts_forma_pago[0], row['cod_oficial_credito'], row['cod_oficina'], row['txt_referencia'], row['cod_usrmod'], fec_usrmod, row['cod_producto_encaje'], row['cod_cuenta_encaje'], row['val_cupo'], sts_encaje[0], row['val_encaje'], row['cod_producto_certificado'], row['cod_cuenta_certificado'], fec_primer_pago, sts_certificado[0], sts_ahorro[0], row['num_cuotas_pagadas'], row['val_mora'], row['num_notificacion'], fec_ult_notificacion, row['val_notificacion'], row['val_seguro'], row['num_dia_pago'], sts_seguro[0], row['val_capital_mora'], row['num_dias_mora'], row['val_capital_vencido'], row['val_multa'], row['val_edificio'], row['val_fondo'], row['cod_notificacion'], sts_tipo_credito[0], row['val_demanda'], row['val_castigo'], row['cod_tipo_credito'], row['cod_cuenta_contable'], row['cod_clasif_credito'], row['val_tir'], row['val_tea'], row['val_prima_descuento'], row['val_provision_inc_constituida'], row['val_provision_inc_reducida'], row['val_provision_int'], fec_provision_int, fec_demanda, fec_castigo, row['cod_tipo_operacion'], cod_obj_fideicomiso[0], fec_provision_inc, row['cod_cuenta_anterior'], fec_novacion, cod_linea_credito[0], row['num_frecuencia_revision'], cod_clase_credito[0], sts_operacion[0], cod_situacion_operacion[0], cod_destino_financiero[:2], row['cod_act_eco_receptora'], row['cod_provincia_destino'], row['cod_canton_destino'], row['cod_instruccion_esperada'], row['num_participantes_solidario'], cod_forma_cancelacion[:2], fec_cancelacion, row['cod_parroquia_destino'])
 
     cursor.execute(insert_query, data)
     conn.commit()
@@ -47,4 +64,4 @@ for index, row in df.iterrows():
 cursor.close()
 conn.close()
 
-print("Datos insertados correctamente en la base de datos.")
+print("Datos insertados correctamente :)...")

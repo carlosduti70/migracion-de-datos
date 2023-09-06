@@ -4,10 +4,10 @@ import os
 
 # Configuración de la conexión a PostgreSQL
 db_config = {
-    'host': '192.168.1.18',
+    'host': '192.168.1.71',
     'user': 'postgres',
     'password': 'dba',
-    'dbname': 'migracion'
+    'dbname': 'postgres'
 }
 
 conn = psycopg2.connect(**db_config)
@@ -29,7 +29,14 @@ for index, row in df.iterrows():
     fec_usrmod = row['fec_usrmod'].strftime('%Y-%m-%d') if not pd.isnull(row['fec_usrmod']) else None
     fec_vigente = row['fec_vigente'].strftime('%Y-%m-%d') if not pd.isnull(row['fec_vigente']) else None
 
+    cod_forma_envio_correspondencia = str(row['cod_forma_envio_correspondencia'])
+    sts_tipo_vivienda_corresp = str(row['sts_tipo_vivienda_corresp'])
+    sts_condiciones_especiales = str(row['sts_condiciones_especiales'])
+    sts_bloquea = str(row['sts_bloquea'])
 
-    data = (row['cod_producto'], row['cod_cuenta'], row['cod_socio'], row['num_cuenta_ref'], fec_apertura, fec_ult_movimiento, row['sts_cuenta'], fec_sts_cuenta, row['txt_referencia'], row['val_saldo'], row['val_efectivo'], row['val_cheques'], row['val_bloqueado'], row['cod_oficina'], row['cod_usrmod'], fec_usrmod, row['cod_oficial_cuenta'], row['nom_cuenta'], row['cod_forma_envio_correspondencia'], row['nom_contacto_corresp'], row['sts_tipo_vivienda_corresp'], row['dir_corresp'], row['val_inicial_apertura'], row['sts_condiciones_especiales'], row['cod_frecuencia'], row['num_libreta'], row['cod_forma_pago_capital'], row['cod_forma_pago_interes'], row['cod_cuenta_pago_interes'], row['val_garantia'], row['val_encaje'], row['val_otro'], row['txt_comentario'], row['cod_cuenta_rel'], row['num_linea_imp_libreta'], row['val_fondo'], row['val_gastos'], row['val_certificado'], row['val_ahorro'], row['val_edificio'], row['cod_producto_rel'], row['val_interes'], row['val_promedio30'], row['val_promedio60'], row['val_promedio90'], row['val_saldo_minimo'], row['val_tasa_interes'], fec_vigente, row['num_plazo'], row['sts_bloquea'], row['cod_promotor'])
+
+    data = (row['cod_producto'], row['cod_cuenta'], row['cod_socio'], row['num_cuenta_ref'], fec_apertura, fec_ult_movimiento, row['sts_cuenta'], fec_sts_cuenta, row['txt_referencia'], row['val_saldo'], row['val_efectivo'], row['val_cheques'], row['val_bloqueado'], row['cod_oficina'], row['cod_usrmod'], fec_usrmod, row['cod_oficial_cuenta'], row['nom_cuenta'], cod_forma_envio_correspondencia[0], row['nom_contacto_corresp'], sts_tipo_vivienda_corresp[0], row['dir_corresp'], row['val_inicial_apertura'], sts_condiciones_especiales[0], row['cod_frecuencia'], row['num_libreta'], row['cod_forma_pago_capital'], row['cod_forma_pago_interes'], row['cod_cuenta_pago_interes'], row['val_garantia'], row['val_encaje'], row['val_otro'], row['txt_comentario'], row['cod_cuenta_rel'], row['num_linea_imp_libreta'], row['val_fondo'], row['val_gastos'], row['val_certificado'], row['val_ahorro'], row['val_edificio'], row['cod_producto_rel'], row['val_interes'], row['val_promedio30'], row['val_promedio60'], row['val_promedio90'], row['val_saldo_minimo'], row['val_tasa_interes'], fec_vigente, row['num_plazo'], sts_bloquea[0], row['cod_promotor'])
     cursor.execute(insert_query, data)
     conn.commit()
+
+print("Datos insertados correctamente :)...")

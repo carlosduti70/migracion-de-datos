@@ -38,4 +38,4 @@ for index, row in df.iterrows():
 cursor.close()
 conn.close()
 
-print("Datos insertados correctamente en la base de datos.")
+print("Datos insertados correctamente :)...")
