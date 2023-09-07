@@ -31,8 +31,10 @@ for index, row in df.iterrows():
     fec_vencimiento = row['fec_vencimiento'].strftime('%Y-%m-%d') if not pd.isnull(row['fec_vencimiento']) else None
     fec_pago = row['fec_pago'].strftime('%Y-%m-%d') if not pd.isnull(row['fec_pago']) else None
 
+    sts_dep_plazo_tabla = str(row['sts_dep_plazo_tabla'])
 
-    data = (row['cod_producto'], row['cod_cuenta'], row['num_cuota'], row['val_capital'], row['val_interes'], row['val_tasa_interes'], row['val_impuesto'], row['sts_dep_plazo_tabla'], fec_inicio, fec_vencimiento, row['txt_referencia'], fec_pago, row['cod_oficina_pago'], row['cod_transaccion_pago'], row['num_transaccion_pago'], row['val_saldo_deposito'], row['val_saldo_interes'], row['val_saldo_impuesto'])
+
+    data = (row['cod_producto'], row['cod_cuenta'], row['num_cuota'], row['val_capital'], row['val_interes'], row['val_tasa_interes'], row['val_impuesto'], sts_dep_plazo_tabla[0], fec_inicio, fec_vencimiento, row['txt_referencia'], fec_pago, row['cod_oficina_pago'], row['cod_transaccion_pago'], row['num_transaccion_pago'], row['val_saldo_deposito'], row['val_saldo_interes'], row['val_saldo_impuesto'])
 
     cursor.execute(insert_query, data)
     conn.commit()

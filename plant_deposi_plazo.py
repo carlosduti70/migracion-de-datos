@@ -31,8 +31,13 @@ for index, row in df.iterrows():
     fec_vencimiento = row['fec_vencimiento'].strftime('%Y-%m-%d') if not pd.isnull(row['fec_vencimiento']) else None
     fec_usrmod = row['fec_usrmod'].strftime('%Y-%m-%d') if not pd.isnull(row['fec_usrmod']) else None
 
+    sts_deposito= str(row['sts_deposito'])
+    cod_tipo_id_ben= str(row['cod_tipo_id_ben'])
+    sts_forma_pago_interes= str(row['sts_forma_pago_interes'])
 
-    data = (row['cod_producto'], row['cod_cuenta'], row['cod_socio'], row['num_documento'], row['val_deposito'], row['val_efectivo'], row['val_cheques'], row['val_tasa_interes'], row['val_impuesto'], row['sts_deposito'], fec_deposito, row['num_plazo'], row['num_cuotas_pago_interes'], fec_vencimiento, row['txt_referencia'], row['nom_beneficiario'], row['ape_beneficiario'], row['cod_tipo_id_ben'], row['num_id_ben'], row['cod_usrmod'],fec_usrmod, row['val_interes'], row['val_tasa_impuesto'], row['cod_oficina'], row['cod_cuenta_contable'], row['cod_producto_socio'], row['cod_cuenta_socio'], row['sts_forma_pago_interes'], row['val_saldo_impuesto'], row['val_saldo_deposito'], row['val_saldo_interes'], row['val_tir'], row['val_tea'])
+
+
+    data = (row['cod_producto'], row['cod_cuenta'], row['cod_socio'], row['num_documento'], row['val_deposito'], row['val_efectivo'], row['val_cheques'], row['val_tasa_interes'], row['val_impuesto'], sts_deposito[:2], fec_deposito, row['num_plazo'], row['num_cuotas_pago_interes'], fec_vencimiento, row['txt_referencia'], row['nom_beneficiario'], row['ape_beneficiario'], cod_tipo_id_ben[0], row['num_id_ben'], row['cod_usrmod'],fec_usrmod, row['val_interes'], row['val_tasa_impuesto'], row['cod_oficina'], row['cod_cuenta_contable'], row['cod_producto_socio'], row['cod_cuenta_socio'], sts_forma_pago_interes[0], row['val_saldo_impuesto'], row['val_saldo_deposito'], row['val_saldo_interes'], row['val_tir'], row['val_tea'])
 
     cursor.execute(insert_query, data)
     conn.commit()
