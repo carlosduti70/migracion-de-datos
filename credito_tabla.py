@@ -19,6 +19,9 @@ sheet_name = 'Hoja1'  # Cambia esto al nombre de la hoja que deseas importar
 
 df = pd.read_excel(socios, sheet_name=sheet_name)
 
+val_numeric= ['val_capital', 'val_interes', 'val_tasa_interes', 'val_gastos', 'val_gestion_cobro', 'val_ahorro', 'val_certificado', 'val_otros', 'val_impuesto', 'val_seguro', 'val_notificacion', 'val_multa', 'val_saldo_capital', 'val_saldo_interes', 'val_saldo_gestion_cobro', 'val_saldo_ahorro', 'val_saldo_certificado', 'val_saldo_gastos', 'val_saldo_otros', 'val_saldo_impuesto', 'val_saldo_seguro', 'val_saldo_notificacion', 'val_saldo_multa', 'val_capital_mora', 'num_dias_mora', 'val_saldo_mora', 'val_edificio', 'val_saldo_edificio', 'val_fondo', 'val_saldo_fondo', 'cod_usrmod', 'val_capital_vencido']
+df[val_numeric] = df[val_numeric].fillna(0)
+
 for index, row in df.iterrows():
     insert_query = f"INSERT INTO sgf_credito_tabla (cod_producto, cod_cuenta, num_cuota, val_capital, val_interes, val_tasa_interes, val_gastos, val_gestion_cobro, val_ahorro, val_certificado, val_otros, val_impuesto, sts_credito_tabla, fec_inicio, fec_vencimiento, txt_referencia, fec_usrmod, val_seguro, val_notificacion, val_multa, val_saldo_capital, val_saldo_interes, val_saldo_gestion_cobro, val_saldo_ahorro,  val_saldo_certificado, val_saldo_gastos, val_saldo_otros, val_saldo_impuesto, val_saldo_seguro, val_saldo_notificacion, fec_ult_pago, val_saldo_multa, val_capital_mora, num_dias_mora, val_saldo_mora, val_edificio, val_saldo_edificio, val_fondo, val_saldo_fondo, cod_usrmod, val_capital_vencido, cod_cuenta_contable) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 

@@ -19,6 +19,11 @@ sheet_name = 'Hoja1'  # Cambia esto al nombre de la hoja que deseas importar
 
 df = pd.read_excel(socios, sheet_name=sheet_name)
 
+# --------------------------------------------------------------------------------------
+val_numeric= ['cod_parroquia', 'cod_canton', 'cod_provincia', 'cod_pais', 'cod_act_economica', 'cod_instruccion', 'cod_usrmod', 'val_ingreso_mensual', 'val_activo', 'val_pasivo', 'val_patrimonio', 'val_gastos_mensuales', 'val_vivienda', 'num_tiempo_trabajo', 'num_cargas_familiares', 'cod_socio_conyuge', 'cod_socio_vinculado', 'cod_relacion', 'cod_oficina', 'cod_parroquia_nac', 'cod_canton_nac', 'cod_provincia_nac', 'cod_pais_nac', 'cod_pais_dom', 'cod_barrio', 'cod_etnia']
+df[val_numeric] = df[val_numeric].fillna(0)
+# ----------------------------------------------------------------------------------------
+
 
 for index, row in df.iterrows():
     if row['codigo del socio'] == None:

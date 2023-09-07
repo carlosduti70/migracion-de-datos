@@ -20,6 +20,8 @@ sheet_name = 'Hoja1'  # Cambia esto al nombre de la hoja que deseas importar
 
 df = pd.read_excel(dep_plazo_tabla, sheet_name=sheet_name)
 
+val_numeric= ['val_capital', 'val_interes', 'val_tasa_interes', 'val_impuesto', 'cod_oficina_pago', 'num_transaccion_pago', 'val_saldo_deposito', 'val_saldo_interes', 'val_saldo_impuesto']
+df[val_numeric] = df[val_numeric].fillna(0)
 
 for index, row in df.iterrows():
     insert_query = f"INSERT INTO sgf_dep_plazo_tabla (cod_producto, cod_cuenta, num_cuota, val_capital, val_interes, val_tasa_interes, val_impuesto, sts_dep_plazo_tabla, fec_inicio, fec_vencimiento, txt_referencia, fec_pago, cod_oficina_pago, cod_transaccion_pago, num_transaccion_pago, val_saldo_deposito, val_saldo_interes, val_saldo_impuesto) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"

@@ -19,6 +19,9 @@ sheet_name = 'Hoja1'  # Cambia esto al nombre de la hoja que deseas importar
 
 df = pd.read_excel(socios, sheet_name=sheet_name)
 
+val_numeric= ['cod_socio', 'val_saldo', 'val_efectivo', 'val_cheques', 'val_bloqueado', 'cod_oficina', 'cod_usrmod', 'cod_oficial_cuenta', 'val_inicial_apertura', 'cod_frecuencia', 'num_libreta', 'cod_forma_pago_capital', 'cod_forma_pago_interes', 'val_garantia', 'val_encaje', 'val_otro', 'cod_cuenta_rel', 'num_linea_imp_libreta', 'val_fondo', 'val_gastos', 'val_certificado', 'val_ahorro', 'val_edificio', 'cod_producto_rel', 'val_interes', 'val_promedio30', 'val_promedio60', 'val_promedio90', 'val_saldo_minimo', 'val_tasa_interes', 'num_plazo', 'cod_promotor']
+df[val_numeric] = df[val_numeric].fillna(0)
+
 for index, row in df.iterrows():
     insert_query = f"INSERT INTO sgf_cuenta (cod_producto, cod_cuenta, cod_socio, num_cuenta_ref, fec_apertura, fec_ult_movimiento, sts_cuenta, fec_sts_cuenta, txt_referencia, val_saldo, val_efectivo, val_cheques, val_bloqueado, cod_oficina, cod_usrmod, fec_usrmod, cod_oficial_cuenta, nom_cuenta, cod_forma_envio_correspondencia, nom_contacto_corresp, sts_tipo_vivienda_corresp, dir_corresp, val_inicial_apertura, sts_condiciones_especiales, cod_frecuencia, num_libreta, cod_forma_pago_capital, cod_forma_pago_interes, cod_cuenta_pago_interes, val_garantia, val_encaje, val_otro, txt_comentario, cod_cuenta_rel, num_linea_imp_libreta, val_fondo, val_gastos, val_certificado, val_ahorro, val_edificio, cod_producto_rel, val_interes, val_promedio30, val_promedio60, val_promedio90, val_saldo_minimo, val_tasa_interes, fec_vigente, num_plazo, sts_bloquea, cod_promotor) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
